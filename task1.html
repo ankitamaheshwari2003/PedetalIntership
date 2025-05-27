@@ -1,0 +1,312 @@
+
+<html>
+<head>
+
+  <title>Cycling World</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-image: url("bicycle.JPG");
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      height: 100vh;
+      color: white;
+    }
+
+
+    .navbar {
+      background-color: #008081;
+      font-family: calibri;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 90px;
+    }
+
+    .logo p {
+      font-size: 45px;
+      font-weight: 500;
+      color: white;
+    }
+
+    li {
+      list-style: none;
+      display: inline-block;
+    }
+
+    li a {
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+      margin-right: 25px;
+    }
+
+     .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5) 
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+
+    .hero a.button {
+      padding: 15px 30px;
+      font-size: 20px;
+      color: white;
+      background-color: #008081;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    .hero a.button:hover {
+      background-color: #005f5f;
+    }
+     .about-section {
+       display: flex;
+       background-color: #FDFBD4;
+       flex-wrap: wrap;
+       justify-content: center;
+       padding: 50px 20px;
+    }
+
+    .div1{
+      display: flex;
+      } 
+    .prea{
+      font-size: 30px; 
+      color:  #005f5f ;
+  }
+   .diva {
+    width: 500px;
+    height: 400px;
+    float: left;
+    margin-left: 100px;
+    margin-top: 50px;
+  
+  }
+     .slider{
+     position: relative;
+     width: 500px;
+     height: 400px;
+     margin-left: 150px;
+     overflow: hidden;
+      margin-top: 50px;
+   }
+   .slider img{ 
+     width: 500px;  
+     height: 400px;
+     display: none;
+   }
+
+    .slider button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 24px;
+      border-radius: 50%;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+    .contact {
+      padding: 40px 20px;
+      background-color: #f1f1f1;
+    }
+    .contact h2{
+     color:  #005f5f;
+    }
+
+    .contact form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact input, .contact textarea {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .contact button {
+      padding: 10px;
+      font-size: 18px;
+      background-color: #005f5f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+   @media (max-width: 768px)
+     {
+       body {
+        overflow-x: hidden;
+     }
+      .div1{
+        flex-direction: column;
+        align-items: center;
+      }
+      .diva {
+    width: 500px;
+    height: 400px;
+    float: left;
+    margin-right: 150px;
+    margin-top: 5px;
+  
+  } .prea{
+      font-size: 25px; 
+      color:  #005f5f ;
+  }
+
+     
+       .slider{
+     position: relative;
+     width: 500px;
+     height: 400px;
+     margin-right: 150px;
+     overflow: hidden;
+      margin-top: 5px;
+   }
+   .slider img{ 
+     width: 500px;  
+     height: 400px;
+     display: none;
+   }
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+    } 
+  
+  </style>
+</head>
+<body>
+<section home>
+<nav class="navbar">
+    <div class="logo">
+      <p>Cycling World</p>
+      <ul class="main">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</section>
+
+  <div class="hero">
+    <h1>Welcome to Cycling World</h1>
+    <p>Discover the freedom of two wheels and a lifetime of adventure</p>
+    <a href="#contact" class="button">Contact us</a>
+  </div>
+
+
+ <section class="about-section" id="about">
+<div class="div1">
+<div class="diva"> 
+   <pre class="prea">
+ A bicycle, also called a pedal cycle, bike, 
+ push-bike or cycle, is a human-powered 
+ or motor-assisted, pedal-driven, single-track 
+ vehicle, with two wheels attached to a frame,
+ one behind the other. A bicycle rider is called
+ a cyclist, or bicyclist.
+ Bicycles were introduced in the 19th century in 
+ Europe. By the early 21st century there were
+ more than 1 billion bicycles.There are many
+ more bicycles than cars.Bicycles are the 
+ principal means of transport in many regions.</pr>
+  </div>
+ <div class="slider">
+  <div class="slides"> 
+    <img class="slide" src="bicycle1.jpg">
+    <img class="slide" src="bicycle2.jpg">
+    <img class="slide" src="bicycle3.jpg">
+    <img class="slide" src="bicycle4.jpg">
+    <img class="slide" src="bicycle5.jpg">
+  </div>
+<button class="prev" onclick="prevSlide()"> &#10094;</botton>
+<button class="next" onclick="nextSlide()"> &#10095;</botton>
+</div>
+</div>
+  </section>
+
+<section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <textarea rows="5" placeholder="Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+<script>
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName('slide');
+
+    function showSlide(index) {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none';
+      }
+      slides[index].style.display = 'block';
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % slides.length;
+      showSlide(slideIndex);
+    }
+
+    function prevSlide() {
+      slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+      showSlide(slideIndex);
+    }
+
+  
+    showSlide(slideIndex);
+
+    
+  </script>
+</body>
+</html>
