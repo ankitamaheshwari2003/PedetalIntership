@@ -1,0 +1,215 @@
+
+<html >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Step Form</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: purple;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #ffffffd9;
+      border-radius: 15px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    .progress-bar {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .step {
+      width: 35px;
+      height: 35px;
+      background-color: #d1c4e9;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: #333;
+      transition: background-color 0.3s;
+    }
+
+    .step.active {
+      background-color: #6a1b9a;
+      color: white;
+    }
+
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active {
+      display: block;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    input[type="file"] {
+      padding: 3px;
+    }
+
+    button {
+      background-color: #6a1b9a;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #4a148c;
+    }
+
+    #preview {
+      max-width: 100px;
+      margin-top: 10px;
+      display: block;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      background-color: #7e57c2;
+      color: white;
+      padding: 5px 10px;
+      margin: 5px;
+      border-radius: 15px;
+      font-size: 14px;
+    }
+
+    #successMessage {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    #toggleTheme {
+      background: none;
+      color: #6a1b9a;
+      font-weight: bold;
+      border: 2px solid #6a1b9a;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-top: 20px;
+      transition: all 0.3s;
+    }
+
+    #toggleTheme:hover {
+      background-color: #6a1b9a;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="progress-bar">
+      <div class="step step-1 active">1</div>
+      <div class="step step-2">2</div>
+      <div class="step step-3">3</div>
+      <div class="step step-4">4</div>
+    </div>
+
+    <form id="multiStepForm">
+      <!-- Step 1 -->
+      <div class="form-step active">
+        <h2>Personal Information</h2>
+        <input type="text" id="fullName" placeholder="Full Name" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="tel" id="phone" placeholder="Phone" required />
+        <button type="button" class="next">Next</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-step">
+        <h2>Account Setup</h2>
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <div id="password-strength"></div>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+        <button type="button" class="back">Back</button>
+        <button type="button" class="next">Next</button>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-step">
+        <h2>Profile Details</h2>
+        <input type="file" id="profilePicture" accept="image/*" />
+        <img id="preview" src="" alt="Preview" />
+        <textarea id="bio" placeholder="Bio (max 250 characters)" maxlength="250"></textarea>
+        <input type="text" id="skillsInput" placeholder="Add skills" />
+        <div id="skillsContainer"></div>
+        <button type="button" class="back">Back</button>
+        <button type="button" class="next">Next</button>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="form-step">
+        <h2>Review & Submit</h2>
+        <div id="review"></div>
+        <button type="button" class="back">Back</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+    <div id="successMessage" class="hidden">Form submitted successfully!</div>
+    <button id="toggleTheme">Toggle Dark Mode</button>
+  </div>
+
+  <script src="passwordStrength.js"></script>
+  <script src="skillTags.js"></script>
+  <script src="script.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const data = JSON.parse(localStorage.getItem('formData'));
+      if (data) {
+        document.getElementById('fullName').value = data.fullName || '';
+        document.getElementById('email').value = data.email || '';
+        document.getElementById('phone').value = data.phone || '';
+        document.getElementById('username').value = data.username || '';
+        document.getElementById('bio').value = data.bio || '';
+
+        const container = document.getElementById('skillsContainer');
+        if (data.skills && Array.isArray(data.skills)) {
+          data.skills.forEach(skill => {
+            const tag = document.createElement('span');
+            tag.className = 'skill-tag';
+            tag.textContent = skill;
+            container.appendChild(tag);
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
